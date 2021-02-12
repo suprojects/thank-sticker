@@ -1,6 +1,6 @@
 from utils.pack import pack
 from telegram.ext import MessageHandler, Filters
-
+from database import botchats
 
 def join(update, context):
 
@@ -15,7 +15,8 @@ def join(update, context):
         except:
             update.message.reply_text(text=(f"<b>THANK YOU FOR {memberCount} MEMBERS</b>"), parse_mode='HTML', quote=False)
 
-
+    botchats.update_chat(update.message.chat)
+    
 __handlers__ = [
     [MessageHandler(Filters.status_update.new_chat_members, join)]
 ]

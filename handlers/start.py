@@ -1,11 +1,12 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CommandHandler, Filters
 from html import escape
+from database import botchats, botusers
 
 
 def start_group(update, context):
     update.message.reply_text("I am online! 🤖", reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("OK", callback_data=(f"delete_{update.message.from_user.id}"))]]))
-
+    botchats.update_chat(update.message.chat)
 
 def start_pvt(update, context):
     msg, usr = update.message, update.message.from_user
@@ -37,6 +38,8 @@ Just add me to the group, and I will start working right away!
 <b>P.S.: I will never see your group's messages because <a href='https://core.telegram.org/bots#privacy-mode'>Privacy mode</a> is turned on. So don't worry about spying 👀.</b>
 
 """), reply_markup=BUTTON_MARKUP, parse_mode='HTML', disable_web_page_preview=True)
+
+    botusers.new_user(usr)
 
 
 __handlers__ = [
