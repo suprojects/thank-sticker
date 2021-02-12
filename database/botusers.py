@@ -1,11 +1,9 @@
 from database import db
-from database import tgusers
 
 botusers = db["botusers"]
 
 
 def new_user(from_user):
-    tgusers.update_user(from_user)
     botusers.update_one(
         {"id": from_user.id},
         {
