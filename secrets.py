@@ -7,5 +7,5 @@ except ImportError:
 import os   
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-SUDO_USERS = list(map(int, environ.get("SUDO_USERS").split()))
+SUDO_USERS = list(map(int, os.environ.get("SUDO_USERS").split()))
 LOG_CHAT = int(os.environ.get('LOG_CHAT'))
