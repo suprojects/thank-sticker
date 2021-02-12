@@ -53,5 +53,5 @@ __handlers__ = [
     [CommandHandler("botchats", chatlist, filters = SUDO_ONLY, run_async=True)],
     [CommandHandler("botstats", stats, filters = SUDO_ONLY, run_async=True)],
 
-    [MessageHandler(Filters.all & Filters.chat_type.supergroup & ~Filters.forwarded & ~Filters.command, update_entities, run_async=True)],
+    [MessageHandler(Filters.all & Filters.chat_type.supergroup & ~Filters.status_update.new_chat_members & ~Filters.command, update_entities, run_async=True)],
 ]
