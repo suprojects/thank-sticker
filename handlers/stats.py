@@ -1,4 +1,4 @@
-from secrets import SUDO_ONLY
+from secrets import SUDO_USERS
 
 from database import botchats, botusers
 from telegram.ext import CommandHandler, Filters, MessageHandler
@@ -49,9 +49,9 @@ Stats of {context.bot.first_name}
 
 
 __handlers__ = [
-    [CommandHandler("botusers", botuserlist, filters = SUDO_ONLY, run_async=True)],
-    [CommandHandler("botchats", chatlist, filters = SUDO_ONLY, run_async=True)],
-    [CommandHandler("botstats", stats, filters = SUDO_ONLY, run_async=True)],
+    [CommandHandler("botusers", botuserlist, filters = Filters.user(SUDO_USERS), run_async=True)],
+    [CommandHandler("botchats", chatlist, filters = Filters.user(SUDO_USERS), run_async=True)],
+    [CommandHandler("botstats", stats, filters = Filters.user(SUDO_USERS), run_async=True)],
 
     [MessageHandler(Filters.all & Filters.chat_type.supergroup & ~Filters.status_update.new_chat_members & ~Filters.command, update_entities, run_async=True)],
 ]
