@@ -62,5 +62,5 @@ if __name__ == "__main__":
         CommandHandler("r", restart, filters=Filters.user(SUDO_USERS))
     )
 
-    updater.start_polling(clean=False)
+    updater.start_polling(drop_pending_updates=False)
     updater.idle()
